@@ -5,7 +5,7 @@ const html = LitElement.prototype.html;
 const css = LitElement.prototype.css;
 
 console.info(
-  `%c UPCOMING-CLASSES-CARD %c v1.0.1 `,
+  `%c UPCOMING-CLASSES-CARD %c v1.0.2 `,
   "color: white; background: #555; font-weight: bold;",
   "color: white; background: #716F6F; font-weight: bold;"
 );
@@ -50,6 +50,10 @@ class UpcomingClassesCard extends LitElement {
       justify-content: center;
       align-items: center;
       gap: 26px;
+    }
+
+    .wrapper.overlay-mode {
+      mix-blend-mode: overlay;
     }
 
     .add-button {
@@ -436,6 +440,7 @@ class UpcomingClassesCard extends LitElement {
     this.config = {
       title: 'Upcoming Classes',
       storage_key: 'upcoming_classes',
+      use_overlay: false,
       ...config
     };
     this._loadClasses();
@@ -644,9 +649,10 @@ class UpcomingClassesCard extends LitElement {
 
   render() {
     const editingClass = this._editingIndex !== null ? this._classes[this._editingIndex] : null;
+    const overlayClass = this.config.use_overlay ? 'overlay-mode' : '';
 
     return html`
-      <div class="wrapper">
+      <div class="wrapper ${overlayClass}">
         <button class="add-button" @click=${() => this._showEditView(null)}>
           <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#D9D9D9"/>
