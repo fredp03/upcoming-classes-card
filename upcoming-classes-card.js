@@ -5,7 +5,7 @@ const html = LitElement.prototype.html;
 const css = LitElement.prototype.css;
 
 console.info(
-  `%c UPCOMING-CLASSES-CARD %c v1.0.0 `,
+  `%c UPCOMING-CLASSES-CARD %c v1.0.1 `,
   "color: white; background: #555; font-weight: bold;",
   "color: white; background: #716F6F; font-weight: bold;"
 );
@@ -29,11 +29,12 @@ class UpcomingClassesCard extends LitElement {
 
     :host {
       font-family: 'Karla', sans-serif;
-      --card-bg: #716F6F;
-      --class-bg: #D9D9D9;
-      --text-color: #393939;
-      --border-color: #BDBDBD;
-      --input-border: rgba(0, 0, 0, 0.28);
+      --card-bg: var(--ha-card-background, #4a4a4a);
+      --class-bg: var(--secondary-background-color, #e8e8e8);
+      --text-color: var(--primary-text-color, #212121);
+      --text-color-secondary: var(--secondary-text-color, #727272);
+      --border-color: var(--divider-color, #e0e0e0);
+      --input-border: rgba(0, 0, 0, 0.12);
     }
 
     .wrapper {
@@ -41,8 +42,6 @@ class UpcomingClassesCard extends LitElement {
       padding: 25px;
       position: relative;
       background: var(--card-bg);
-      mix-blend-mode: overlay;
-      isolation: isolate;
       border-radius: 16px;
       outline: 1px var(--border-color) solid;
       outline-offset: -1px;
